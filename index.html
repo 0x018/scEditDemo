@@ -101,38 +101,6 @@
 			word-wrap: break-word;
 		}
 
-		.cursor {
-			display: inline-block;
-			width: 0px;
-			border: 0px none;
-			padding: 0;
-			animation-duration: 2.7s;
-			animation-name: flash;
-			animation-iteration-count: infinite;
-			position: relative;
-		}
-
-		.cursor::after {
-			position: absolute;
-			display: block;
-			top: calc(var(--line-height) * -1em + 4px);
-			left: 0;
-			content: " ";
-			height: calc(var(--line-height) * 1em - 1px);
-			width: 1px;
-			background: #000;
-			z-index: 999;
-		}
-
-		.tag {
-			/* border: 1px solid red; */
-			/* padding: 0 1px; */
-			/* display: inline-block; */
-			/* width: auto; */
-			/* height: auto; */
-			/* background: rgba(255, 0, 0, 0.2); */
-			/* color: #fff; */
-		}
 
 		.condition {
 			display: inline-block;
