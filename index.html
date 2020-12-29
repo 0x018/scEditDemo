@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>auto input</title>
+</head>
+
+<body>
+
+	<div class="example"></div>
+	<style>
+		body {
+			/* box-sizing: border-box; */
+			font-family: 宋体;
+		}
+
+		.edit-box {
+			box-sizing: border-box;
+			padding: 0;
+			margin: 0;
+			width: 100%;
+			min-height: 300px;
+			/* border: 1px solid #e0e0e0; */
+			position: relative;
+			--line-height: 1.5;
+			line-height: var(--line-height);
+			/* background-origin: content-box; */
+
+			/* overflow: auto; */
+		}
+
+		.edit {
+			width: inherit;
+			height: inherit;
+			min-height: inherit;
+			padding-top: 0;
+			padding-bottom: 0;
+			padding-left: 4px;
+			padding-right: 4px;
+			/* border: none; */
+			line-height: var(--line-height);
+			overflow: inherit;
+			position: relative;
+			outline: none;
+			box-shadow: none;
+			box-sizing: inherit;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			border: 1px solid #e0e0e0;
+
+			background-image: linear-gradient(rgba(0, 200, 255, 0.3) calc(var(--line-height) * 1em), transparent calc(var(--line-height) * 1em));
+			background-repeat: repeat;
+			background-size: 100% calc(var(--line-height) * 2em);
+
+			/* user-modify: read-write-plaintext-only; */
+		}
+
+		.auto-box {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+
+			width: 200px;
+			/* min-height: 10px; */
+			display: none;
+			border: 1px solid;
+			border-color: #e0e0e0;
+			background-color: #87CEFA;
+			background-origin: padding-box;
+			color: #fff;
+			opacity: 0.96;
+			/* pointer-events: none; */
+		}
+
+		.auto-box.show {
+			display: block;
+		}
+
+		.auto-box>div {
+			position: relative;
+
+			padding: 0;
+
+		}
+
+		.auto-box div.item {
+			padding: 0.2em 1em;
+		}
+
+		/* .auto-box .item:hover, */
+		.auto-box .item.active {
+			background: red;
+		}
+
+		.pre {
+			white-space: pre;
+			word-wrap: break-word;
+		}
+
+		.cursor {
+			display: inline-block;
+			width: 0px;
+			border: 0px none;
+			padding: 0;
+			animation-duration: 2.7s;
+			animation-name: flash;
+			animation-iteration-count: infinite;
+			position: relative;
+		}
+
+		.cursor::after {
+			position: absolute;
+			display: block;
+			top: calc(var(--line-height) * -1em + 4px);
+			left: 0;
+			content: " ";
+			height: calc(var(--line-height) * 1em - 1px);
+			width: 1px;
+			background: #000;
+			z-index: 999;
+		}
+
+		.tag {
+			/* border: 1px solid red; */
+			/* padding: 0 1px; */
+			/* display: inline-block; */
+			/* width: auto; */
+			/* height: auto; */
+			/* background: rgba(255, 0, 0, 0.2); */
+			/* color: #fff; */
+		}
+
+		.condition {
+			display: inline-block;
+			width: 4em;
+			position: relative;
+
+			/* padding: 0 0 5px 0; */
+			box-sizing: border-box;
+			/* height: 1em; */
+			line-height: normal;
+			pointer-events: none;
+		}
+
+		.condition::before {
+			position: absolute;
+			text-align: center;
+			content: attr(data);
+			top: -16px;
+			width: 100%;
+			transform: scale(0.6);
+			transform-origin: center 0;
+			/* height: 100%; */
+			pointer-events: none;
+
+		}
+
+		.condition::after {
+			content: " ";
+			width: 100%;
+			border: 0 solid #000;
+			border-top: 1px solid #000;
+			border-bottom: 1px solid #000;
+			position: absolute;
+			bottom: 0px;
+			height: 3px;
+			display: block;
+			pointer-events: none;
+		}
+	</style>
+	<div class="edit-box">
+		<div id="edit" class="edit pre" contenteditable></div>
+		<!--.edit>.cursor <span class="cursor" contenteditable="false"></span> -->
+		<div id="complate" class="auto-box">
+			<div id="list">
+
+			</div>
+		</div>
+	</div>
+	<pre class="message" id="message"></pre>
+	<!-- <script src="sax.js"></script> -->
+	<script src="edit.js"></script>
+	<!-- <script src="suggest/chemical.js"></script> -->
+	<script src="suggest/chemical2.js"></script>
+	<script src="suggest/greekAlphabet.js"></script>
+</body>
+
+</html>
